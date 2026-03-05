@@ -1,0 +1,16 @@
+SOC Log Investigation - Commands Used
+
+1. Identify failed login attempts:
+grep "Failed password" OpenSSH_2k.log
+
+2. Identify top attacking IP's:
+grep "Failed password" OpenSSH_2k.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head
+
+3. Identify targeted usernames:
+grep "Failed password" OpenSSH_2k.log | awk '{print $(NF-5)}' | sort | uniq -c | sort -nr | header
+
+4. Detect successful logins:
+grep "Accepted password" OpenSSH_2k.log
+
+Investigate compromised account:
+grep "ftzu" OpenSSH_2k.log
